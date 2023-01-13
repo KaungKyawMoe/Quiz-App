@@ -12,8 +12,6 @@
 
     let answerList=[];
 
-    let txtId = document.getElementById('txtId');
-
     let question = document.getElementById('questions');
 
     let result = document.getElementById('result');
@@ -22,19 +20,13 @@
 
     let resultStr = '';
 
-    function nextQuestions(){
-        question.innerHTML = "<div class='header'> Questions "+ +(currentQuiz+1) + ' of '+quizList.length +"</div>" 
-        + '<div class="questionName">'+ quizList[currentQuiz].question + '</div>'
-        + '<div class="choice">'+ '<input type="radio" name="rdo" value="'+quizList[currentQuiz].choice1+'"/>'
-        + '<span class="choiceValue">'+quizList[currentQuiz].choice1 + '</span>'
-        + '</div>'
-        + '<div class="choice">'+ '<input type="radio" name="rdo" value="'+quizList[currentQuiz].choice2+'"/>'
-        + '<span class="choiceValue">'+quizList[currentQuiz].choice2 + '</span>'
-        +'</div>'
-        + '<div class="choice">'+ '<input type="radio" name="rdo" value="'+quizList[currentQuiz].choice3+'"/>'
-        + '<span class="choiceValue">'+quizList[currentQuiz].choice3 + '</span>'
-        +'</div>';
-
+    function restartQuiz(){
+        answerList = [];
+        currentQuiz = 0;
+        info.innerHTML = '';
+        result.innerHTML = '';
+        nextQuestions();
+        document.getElementById('retry').style.display = "none";
     }
 
     function submitAnswer(){
@@ -62,12 +54,30 @@
         currentQuiz += 1;
 
         if(currentQuiz === quizList.length){
+
+            document.getElementById('retry').style.display = "inline-block";
+
             generateResult();
         }
         else{
             nextQuestions();
         }
         
+    }
+    
+    function nextQuestions(){
+        question.innerHTML = "<div class='header'> Questions "+ +(currentQuiz+1) + ' of '+quizList.length +"</div>" 
+        + '<div class="questionName">'+ quizList[currentQuiz].question + '</div>'
+        + '<div class="choice">'+ '<input type="radio" name="rdo" value="'+quizList[currentQuiz].choice1+'"/>'
+        + '<span class="choiceValue">'+quizList[currentQuiz].choice1 + '</span>'
+        + '</div>'
+        + '<div class="choice">'+ '<input type="radio" name="rdo" value="'+quizList[currentQuiz].choice2+'"/>'
+        + '<span class="choiceValue">'+quizList[currentQuiz].choice2 + '</span>'
+        +'</div>'
+        + '<div class="choice">'+ '<input type="radio" name="rdo" value="'+quizList[currentQuiz].choice3+'"/>'
+        + '<span class="choiceValue">'+quizList[currentQuiz].choice3 + '</span>'
+        +'</div>';
+
     }
 
     function generateResult(){
@@ -131,5 +141,6 @@
         info.innerHTML = 'Correct <b>'+correctCount+' of '+quizList.length+'</b>';
     }
 
+    document.getElementById('retry').style.display = "none";
     nextQuestions();
 }

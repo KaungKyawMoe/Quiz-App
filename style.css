@@ -1,0 +1,35 @@
+
+.header{
+    margin: 3px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.questionName{
+    margin: 3px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+div.choice{
+    background-color: aqua;
+    padding: 5px;
+    margin: 2px;
+}
+
+div.success{
+    background-color: green;
+}
+
+div.error{
+    background-color: red;
+}
+
+div.info{
+    margin: 2px;
+    font-size: 12px;
+}
+
+.choiceValue{
+    line-height: 10px;
+}
